@@ -8,16 +8,6 @@ export default function FoodCard({ food }: any) {
 
   function addToCart() {
 
-    const user =
-      localStorage.getItem(
-        "loggedInUser"
-      );
-
-    if (!user) {
-      alert("Please Login First");
-      return;
-    }
-
     let cart = JSON.parse(
       localStorage.getItem("cart")
       || "[]"
@@ -29,12 +19,16 @@ export default function FoodCard({ food }: any) {
     );
 
     if (item) {
+
       item.quantity += 1;
+
     } else {
+
       cart.push({
         ...food,
         quantity: 1
       });
+
     }
 
     localStorage.setItem(
@@ -58,9 +52,11 @@ export default function FoodCard({ food }: any) {
         display: "inline-block",
         boxShadow:
           "0 2px 8px rgba(0,0,0,0.1)",
-        textAlign: "center"
+        textAlign: "center",
+        backgroundColor: "white"
       }}
     >
+
       <img
         src={food.image_url}
         alt={food.item_name}
@@ -72,7 +68,9 @@ export default function FoodCard({ food }: any) {
         }}
       />
 
-      <h2>{food.item_name}</h2>
+      <h2>
+        {food.item_name}
+      </h2>
 
       <h3>
         ₹{food.price}
@@ -89,8 +87,9 @@ export default function FoodCard({ food }: any) {
       <button
         onClick={addToCart}
         style={{
-          padding: "8px",
-          margin: "5px"
+          padding: "10px",
+          margin: "5px",
+          cursor: "pointer"
         }}
       >
         Add To Cart
@@ -101,12 +100,14 @@ export default function FoodCard({ food }: any) {
           router.push("/cart")
         }
         style={{
-          padding: "8px",
-          margin: "5px"
+          padding: "10px",
+          margin: "5px",
+          cursor: "pointer"
         }}
       >
         View Cart
       </button>
+
     </div>
   );
 }
