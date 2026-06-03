@@ -87,27 +87,18 @@ VALUES
 INSERT INTO menu
 (item_name, price, image_url, food_type, restaurant_id)
 VALUES
-(
-'Pizza',
-250.00,
-'https://images.unsplash.com/photo-1513104890138-7c749659a591',
-'Veg',
-1
-),
-(
-'Burger',
-120.00,
-'https://images.unsplash.com/photo-1568901346375-23c9450c58cd',
-'NonVeg',
-2
-),
-(
-'Biriyani',
-180.00,
-'https://images.unsplash.com/photo-1701579231340-2d08dbec2f16',
-'NonVeg',
-3
-);
+
+('Masala Dosa',80,'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQcLLFCOjSc9TLICJ9myaFU0LPwM3diEelCHg&s','Veg',1),
+
+('Veg Biriyani',150,'https://t3.ftcdn.net/jpg/08/20/09/82/360_F_820098215_2qzEzzDTRg699Tc9dELKK5MIgEhHW3Ek.jpg','Veg',1),
+
+('Ghee Roast',100,'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQcLLFCOjSc9TLICJ9myaFU0LPwM3diEelCHg&s','Veg',2),
+
+('Chicken Biriyani',220,'https://images.unsplash.com/photo-1563379091339-03246963d51a?w=600','NonVeg',2),
+
+('Chicken Fried Rice',180,'https://images.unsplash.com/photo-1512058564366-18510be2db19?w=600','NonVeg',3),
+
+('Grill Chicken',250,'https://images.unsplash.com/photo-1527'477396000-e27163b481c2?w=600','NonVeg',3);
 
 -- ORDERS
 

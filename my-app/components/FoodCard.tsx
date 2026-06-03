@@ -1,30 +1,26 @@
 "use client";
 
-import { useState } from "react";
 import { useRouter } from "next/navigation";
 
 export default function FoodCard({ food }: any) {
 
-  const [message, setMessage] =
-    useState("");
-
   const router = useRouter();
-
-  const images: any = {
-    "Ghee Roast":
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQcLLFCOjSc9TLICJ9myaFU0LPwM3diEelCHg&s",
-
-    "Masala Dosa":
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQcLLFCOjSc9TLICJ9myaFU0LPwM3diEelCHg&s",
-
-    "Veg Biriyani":
-      "https://png.https://www.indianhealthyrecipes.com/wp-content/uploads/2019/04/veg-biryani-recipe-480x270.jpg.com/background/20250103/original/pngtree-highly-detailed-veg-biryani-or-pulav-fried-rice-picture-image_15767365.jpg"
-  };
 
   function addToCart() {
 
+    const user =
+      localStorage.getItem(
+        "loggedInUser"
+      );
+
+    if (!user) {
+      alert("Please Login First");
+      return;
+    }
+
     let cart = JSON.parse(
-      localStorage.getItem("cart") || "[]"
+      localStorage.getItem("cart")
+      || "[]"
     );
 
     const item = cart.find(
@@ -46,7 +42,7 @@ export default function FoodCard({ food }: any) {
       JSON.stringify(cart)
     );
 
-    setMessage(
+    alert(
       `${food.item_name} Added To Cart`
     );
   }
@@ -54,26 +50,49 @@ export default function FoodCard({ food }: any) {
   return (
     <div
       style={{
-        border: "1px solid black",
-        padding: "10px",
-        margin: "10px",
-        width: "250px"
+        width: "280px",
+        border: "1px solid #ddd",
+        borderRadius: "12px",
+        padding: "15px",
+        margin: "15px",
+        display: "inline-block",
+        boxShadow:
+          "0 2px 8px rgba(0,0,0,0.1)",
+        textAlign: "center"
       }}
     >
       <img
-        src={images[food.item_name]}
+        src={food.image_url}
         alt={food.item_name}
-        width="200"
-        height="150"
+        style={{
+          width: "100%",
+          height: "180px",
+          objectFit: "cover",
+          borderRadius: "10px"
+        }}
       />
 
-      <h3>{food.item_name}</h3>
+      <h2>{food.item_name}</h2>
 
-      <p>₹{food.price}</p>
+      <h3>
+        ₹{food.price}
+      </h3>
 
-      <p>{food.food_type}</p>
+      <p>
+        🍽️ {food.food_type}
+      </p>
 
-      <button onClick={addToCart}>
+      <p>
+        🏪 {food.restaurant_name}
+      </p>
+
+      <button
+        onClick={addToCart}
+        style={{
+          padding: "8px",
+          margin: "5px"
+        }}
+      >
         Add To Cart
       </button>
 
@@ -81,11 +100,13 @@ export default function FoodCard({ food }: any) {
         onClick={() =>
           router.push("/cart")
         }
+        style={{
+          padding: "8px",
+          margin: "5px"
+        }}
       >
         View Cart
       </button>
-
-      <p>{message}</p>
     </div>
   );
 }
